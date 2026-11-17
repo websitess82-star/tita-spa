@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tita Spa | Spa Party para Niñas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FDF8F8;
+      color: #4A3B3E;
+      scroll-behavior: smooth;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+    .font-brand {
+      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(235, 184, 198, 0.7);
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FDF2F5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #E5A9BC;
+      border-radius: 999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-[#F7D7E2] selection:text-[#4A3B3E]">
+
+  <!-- ================= ENCABEZADO / NAVBAR ================= -->
+  <header class="sticky top-0 z-40 bg-[#FDF8F8]/95 backdrop-blur-md border-b border-[#EED3DC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Logotipo Oficial Tita Spa (Extraído fielmente) -->
+      <div class="flex items-center gap-2 cursor-pointer group shrink-0" onclick="navigateTo('home')">
+        <svg class="h-14 w-auto transition-transform group-hover:scale-105" viewBox="0 0 280 95" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Tita Spa - Spa Party para Niñas">
+          <!-- 3 gotitas rosas a la izquierda de la T -->
+          <path d="M26 42C20 39 14 40 13 43C12 46 19 46 26 44Z" fill="#F2B5C7"/>
+          <path d="M25 50C17 50 11 54 12 57C13 60 20 56 25 52Z" fill="#F2B5C7"/>
+          <path d="M31 56C25 60 22 66 25 68C28 70 31 62 32 57Z" fill="#F2B5C7"/>
+
+          <!-- Tipografía "Tita Spa" en verde menta oficial #78B2A5 -->
+          <text x="142" y="56" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-weight="600" font-size="50" letter-spacing="-1" fill="#78B2A5">Tita Spa</text>
+
+          <!-- Corazón rosa sobre la letra "a" de Spa -->
+          <path d="M236 22C236 16 227 14 225 21C223 15 215 17 216 24C217 30 225 34 226 35C228 33 236 28 236 22Z" stroke="#E89DB4" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- Subtítulo "SPA PARTY PARA NIÑAS" -->
+          <text x="144" y="79" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="11.5" letter-spacing="3.5" fill="#D1879C">SPA PARTY PARA NIÑAS</text>
+        </svg>
+      </div>
+
+      <!-- Menú Desktop -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-[#6B5A5E]">
+        <button onclick="navigateTo('home')" class="nav-btn hover:text-[#D1879C] transition-colors cursor-pointer">Inicio</button>
+        <button onclick="navigateTo('packages')" class="nav-btn hover:text-[#D1879C] transition-colors cursor-pointer">Paquetes</button>
+        <button onclick="navigateTo('services')" class="nav-btn hover:text-[#D1879C] transition-colors cursor-pointer">Servicios</button>
+        <button onclick="navigateTo('souvenirs')" class="nav-btn hover:text-[#D1879C] transition-colors cursor-pointer">Souvenirs</button>
+        <button onclick="navigateTo('gallery')" class="nav-btn hover:text-[#D1879C] transition-colors cursor-pointer">Galería</button>
+        <button onclick="navigateTo('faq')" class="nav-btn hover:text-[#D1879C] transition-colors cursor-pointer">Preguntas</button>
+      </nav>
+
+      <!-- Buscador rápido + CTA Reservar -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center bg-white border border-[#EED3DC] rounded-full px-3 py-1.5">
+          <input
+            type="text"
+            id="quick-search-input"
+            placeholder="Buscar..."
+            onkeydown="if(event.key==='Enter') handleQuickSearch(this.value)"
+            class="bg-transparent text-xs text-[#4A3B3E] placeholder-[#A8969A] focus:outline-none w-32 md:w-40"
+          />
+          <button onclick="handleQuickSearch(document.getElementById('quick-search-input').value)" class="text-[#D1879C] hover:text-[#4A3B3E] text-xs font-bold pl-1 cursor-pointer">⌕</button>
+        </div>
+
+        <button onclick="navigateTo('booking')" class="bg-[#78B2A5] hover:bg-[#649D90] text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 rounded-full shadow-sm transition-all cursor-pointer">
+          Reservar
+        </button>
+
+        <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl border border-[#EED3DC] text-[#4A3B3E] cursor-pointer" aria-label="Abrir menú">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Móvil Desplegable -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-[#EED3DC] px-4 py-4 space-y-3">
+      <div class="flex items-center bg-[#FDF8F8] border border-[#EED3DC] rounded-full px-3 py-2">
+        <input
+          type="text"
+          id="mobile-search-input"
+          placeholder="Buscar paquete o código..."
+          onkeydown="if(event.key==='Enter') { handleQuickSearch(this.value); toggleMobileMenu(); }"
+          class="bg-transparent text-xs text-[#4A3B3E] placeholder-[#A8969A] focus:outline-none w-full"
+        />
+        <button onclick="handleQuickSearch(document.getElementById('mobile-search-input').value); toggleMobileMenu();" class="text-[#D1879C] font-bold text-sm px-2">⌕</button>
+      </div>
+      <div class="grid grid-cols-2 gap-2 text-sm font-medium text-[#4A3B3E]">
+        <button onclick="navigateTo('home'); toggleMobileMenu();" class="text-left py-2 px-3 rounded-xl hover:bg-[#FDF2F5]">Inicio</button>
+        <button onclick="navigateTo('packages'); toggleMobileMenu();" class="text-left py-2 px-3 rounded-xl hover:bg-[#FDF2F5]">Paquetes</button>
+        <button onclick="navigateTo('services'); toggleMobileMenu();" class="text-left py-2 px-3 rounded-xl hover:bg-[#FDF2F5]">Servicios</button>
+        <button onclick="navigateTo('souvenirs'); toggleMobileMenu();" class="text-left py-2 px-3 rounded-xl hover:bg-[#FDF2F5]">Souvenirs</button>
+        <button onclick="navigateTo('gallery'); toggleMobileMenu();" class="text-left py-2 px-3 rounded-xl hover:bg-[#FDF2F5]">Galería</button>
+        <button onclick="navigateTo('faq'); toggleMobileMenu();" class="text-left py-2 px-3 rounded-xl hover:bg-[#FDF2F5]">Preguntas</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= CONTENIDO PRINCIPAL ================= -->
+  <main class="flex-1">
+
+    <!-- ==================== VISTA: INICIO ==================== -->
+    <section id="view-home" class="page-view">
+      <!-- Hero Principal con el Logotipo Oficial y Frases Exactas -->
+      <div class="relative overflow-hidden bg-gradient-to-br from-[#FDF4F6] via-[#FDF9F9] to-[#EFF7F5] py-12 md:py-20 border-b border-[#EED3DC]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-center">
+          
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <!-- Bloque Central del Logotipo Oficial Tita Spa -->
+            <div class="inline-block bg-white/90 backdrop-blur-md px-6 py-5 rounded-[2rem] border border-[#EED3DC] shadow-sm">
+              <svg class="w-64 sm:w-80 h-auto mx-auto" viewBox="0 0 340 115" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tita Spa - Spa Party para Niñas">
+                <!-- 3 gotitas/pétalos rosas junto a la T -->
+                <path d="M35 50C27 46 19 48 18 52C17 56 26 56 35 53Z" fill="#F2B5C7"/>
+                <path d="M34 60C24 60 16 65 18 69C20 73 28 68 34 63Z" fill="#F2B5C7"/>
+                <path d="M41 68C34 73 30 81 34 83C38 85 42 76 43 69Z" fill="#F2B5C7"/>
+
+                <!-- Letras "Tita Spa" en verde menta salvia #78B2A5 -->
+                <text x="172" y="68" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-weight="600" font-size="62" letter-spacing="-1" fill="#78B2A5">Tita Spa</text>
+
+                <!-- Corazón en trazo rosa #E89DB4 sobre la "a" -->
+                <path d="M286 26C286 19 275 16 273 25C270 17 260 20 262 28C263 36 273 41 274 42C276 40 286 33 286 26Z" stroke="#E89DB4" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Subtítulo "SPA PARTY PARA NIÑAS" -->
+                <text x="174" y="96" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="13.5" letter-spacing="4.2" fill="#D1879C">SPA PARTY PARA NIÑAS</text>
+              </svg>
+
+              <!-- Frase con los dos moñitos rosas -->
+              <div class="flex items-center justify-center gap-3 mt-2 pt-2 border-t border-[#F4DFE6]">
+                <svg class="w-6 h-4 shrink-0" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 11C13 5 5 5 5 11C5 16 13 15 18 11ZM18 11C23 5 31 5 31 11C31 16 23 15 18 11ZM18 11L13 19M18 11L23 19" stroke="#E89DB4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="font-medium text-sm sm:text-base text-[#5C4B4E] tracking-wide">¡Llevamos la diversión hasta tu evento!</span>
+                <svg class="w-6 h-4 shrink-0" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 11C13 5 5 5 5 11C5 16 13 15 18 11ZM18 11C23 5 31 5 31 11C31 16 23 15 18 11ZM18 11L13 19M18 11L23 19" stroke="#E89DB4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <h1 class="font-serif italic text-3xl sm:text-5xl font-bold text-[#D1879C] leading-tight">
+              “Porque toda princesa merece un día de spa.”
+            </h1>
+
+            <p class="text-base sm:text-lg text-[#6B5A5E] max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              Creamos una experiencia mágica a domicilio con mascarillas faciales infantiles, mini manicure &amp; pedicure, peinados con glitter, maquillaje infantil y aplicación de gemitas.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1">
+              <button onclick="navigateTo('booking')" class="bg-[#78B2A5] hover:bg-[#649D90] text-white px-7 py-4 rounded-full font-semibold text-sm shadow-lg shadow-[#78B2A5]/25 transition-all cursor-pointer">
+                Aparta tu fecha con $300
+              </button>
+              <button onclick="navigateTo('packages')" class="bg-white hover:bg-[#FDF2F5] text-[#4A3B3E] border border-[#E89DB4] px-7 py-4 rounded-full font-semibold text-sm transition-all cursor-pointer">
+                Ver Paquetes y Cotizar
+              </button>
+            </div>
+
+            <!-- Contacto directo del flyer -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-5 pt-2 text-sm text-[#5C4B4E]">
+              <a href="https://wa.me/529811028046" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 font-semibold hover:text-[#78B2A5]">
+                <span class="w-7 h-7 rounded-full bg-[#78B2A5] text-white flex items-center justify-center text-xs">✆</span>
+                981 102 8046
+              </a>
+              <a href="https://instagram.com/rubvera" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 font-semibold hover:text-[#D1879C]">
+                <span class="w-7 h-7 rounded-full bg-[#F2B5C7] text-white flex items-center justify-center text-xs">◎</span>
+                @rubvera
+              </a>
+            </div>
+          </div>
+
+          <!-- Composición Visual Hero -->
+          <div class="lg:col-span-5">
+            <div class="relative rounded-[2.25rem] overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-[#F7DCE4]">
+              <img id="img-hero-main" src="" alt="Tita Spa Party" class="w-full h-full object-cover">
+              <div class="absolute inset-x-4 bottom-4 glass-card rounded-2xl p-4 shadow-md text-center">
+                <p class="font-serif italic text-base text-[#D1879C] font-bold">Porque toda princesa merece un día de spa.</p>
+                <p class="text-xs text-[#6B5A5E] mt-0.5">¡Llevamos la diversión hasta tu evento!</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Sección Nuestra Esencia -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+            <div class="rounded-3xl overflow-hidden shadow-md border-2 border-white aspect-[3/4] bg-[#FDF2F5]">
+              <img id="img-essence-left" src="" alt="Estación Mini Manicure Tita Spa" class="w-full h-full object-cover">
+            </div>
+            <div class="rounded-3xl overflow-hidden shadow-md border-2 border-white aspect-[3/4] mt-8 bg-[#EFF7F5]">
+              <img id="img-essence-right" src="" alt="Mascarilla Facial Tita Spa" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 space-y-5">
+            <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#78B2A5]">Nuestra Esencia</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#4A3B3E]">Una experiencia mágica diseñada para consentir</h2>
+            <p class="text-[#6B5A5E] leading-relaxed">
+              En <strong>Tita Spa</strong> cuidamos cada detalle para que la festejada y sus invitadas vivan una tarde inolvidable. Llevamos todo el mobiliario, batas satinadas, banditas faciales, productos suaves aptos para niñas y un equipo cálido que guía cada estación.
+            </p>
+            <ul class="space-y-3 text-sm text-[#4A3B3E]">
+              <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-[#F7D7E2] text-[#D1879C] flex items-center justify-center font-bold text-xs">♥</span> Productos hipoalergénicos y seguros para piel infantil.</li>
+              <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-[#DCEEE9] text-[#5E9A8D] flex items-center justify-center font-bold text-xs">♥</span> Montaje y desmontaje completo en tu domicilio o salón.</li>
+              <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-[#F7D7E2] text-[#D1879C] flex items-center justify-center font-bold text-xs">♥</span> Regalo de cortesía incluido (pulsera o clip hair) en todos los paquetes.</li>
+            </ul>
+            <div class="pt-2">
+              <button onclick="navigateTo('services')" class="text-sm font-semibold text-[#78B2A5] hover:text-[#4A3B3E] underline underline-offset-4 cursor-pointer">
+                Conoce todas nuestras estaciones de servicio →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paquetes Destacados en Inicio -->
+      <div class="bg-[#FDF4F6] py-16 border-y border-[#EED3DC]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="inline-block px-4 py-1 rounded-full bg-[#F2B5C7] text-white text-xs font-bold uppercase tracking-[0.2em]">♥ Paquetes ♥</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#4A3B3E] mt-3">Elige tu Spa Party Ideal</h2>
+            <p class="text-sm text-[#6B5A5E] mt-2">Aparta cualquier paquete con <strong>$300 MXN</strong> • Duración de 2 horas.</p>
+          </div>
+
+          <div id="home-packages-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VISTA: PAQUETES + COTIZADOR ==================== -->
+    <section id="view-packages" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-14">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="inline-block px-4 py-1 rounded-full bg-[#F2B5C7] text-white text-xs font-bold uppercase tracking-[0.2em]">♥ Tarifas Oficiales ♥</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#4A3B3E] mt-3">Paquetes y Cotizador Instantáneo</h2>
+        <p class="text-sm text-[#6B5A5E] mt-2">Selecciona el número de invitadas para calcular automáticamente tu tarifa ideal.</p>
+      </div>
+
+      <div id="packages-full-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+      <!-- Cotizador Interactivo -->
+      <div class="bg-white rounded-[2rem] border border-[#EED3DC] shadow-lg p-6 sm:p-10">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-5">
+            <span class="inline-block px-3 py-1 rounded-full bg-[#EFF7F5] text-[#78B2A5] text-xs font-bold uppercase tracking-wider">Calculadora Rápida</span>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#4A3B3E]">Cotiza tu evento según el número de niñas</h3>
+            <p class="text-sm text-[#6B5A5E]">
+              • Paquete Especial (hasta 8 niñas): <strong>$1,550 MXN</strong> (niña adicional $150 MXN).<br>
+              • 10 a 15 niñas: <strong>$2,100 MXN</strong> | 15 a 20 niñas: <strong>$2,600 MXN</strong> | 20 a 25 niñas: <strong>$2,950 MXN</strong>.<br>
+              • Más de 25 niñas: tarifa base de 20-25 ($2,950 MXN) + <strong>$150 MXN por cada niña adicional</strong>.
+            </p>
+
+            <div class="grid sm:grid-cols-2 gap-4 pt-2">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">Cantidad de niñas</label>
+                <input
+                  type="number"
+                  id="calc-girls-input"
+                  min="1"
+                  max="80"
+                  value="8"
+                  oninput="updateQuickCalculator()"
+                  class="w-full rounded-2xl border border-[#E89DB4] bg-[#FDF8F8] px-4 py-3 text-base font-bold text-[#4A3B3E] focus:outline-none focus:ring-2 focus:ring-[#78B2A5]"
+                />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">Regalo de cortesía incluido</label>
+                <select id="calc-courtesy-select" onchange="updateQuickCalculator()" class="w-full rounded-2xl border border-[#E89DB4] bg-[#FDF8F8] px-4 py-3 text-sm font-medium text-[#4A3B3E] focus:outline-none">
+                  <option value="Pulsera de cortesía">Pulsera de cortesía ($0)</option>
+                  <option value="Clip hair de cortesía">Clip hair de cortesía ($0)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-gradient-to-br from-[#FDF4F6] to-[#EFF7F5] rounded-3xl p-6 border border-[#EED3DC] space-y-4">
+            <div class="flex justify-between items-center border-b border-[#E89DB4]/50 pb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#6B5A5E]">Paquete asignado</span>
+              <span id="calc-pkg-name" class="font-serif font-bold text-base text-[#4A3B3E]">Paquete Especial</span>
+            </div>
+            <div class="space-y-2 text-sm text-[#6B5A5E]">
+              <div class="flex justify-between">
+                <span>Tarifa base:</span>
+                <span id="calc-base-price" class="font-semibold text-[#4A3B3E]">$1,550 MXN</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Niñas adicionales ($150 c/u):</span>
+                <span id="calc-extra-price" class="font-semibold text-[#D1879C]">$0 MXN</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Duración:</span>
+                <span class="font-semibold text-[#4A3B3E]">2 horas</span>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-[#E89DB4]/50 flex items-baseline justify-between">
+              <span class="text-sm font-bold text-[#4A3B3E]">Total estimado:</span>
+              <span id="calc-total-price" class="font-serif text-3xl font-bold text-[#78B2A5]">$1,550 MXN</span>
+            </div>
+            <p class="text-xs text-[#6B5A5E]">Aparta tu fecha hoy con solo <strong>$300 MXN</strong> y liquida el resto el día del evento.</p>
+            <button onclick="applyCalculatorToBooking()" class="w-full bg-[#78B2A5] hover:bg-[#649D90] text-white py-3.5 rounded-2xl font-semibold text-sm transition-all cursor-pointer">
+              Reservar con esta cotización →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VISTA: SERVICIOS ==================== -->
+    <section id="view-services" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-10">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="inline-block px-4 py-1 rounded-full bg-[#78B2A5] text-white text-xs font-bold uppercase tracking-[0.2em]">♥ Incluye ♥</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#4A3B3E] mt-3">Estaciones y Actividades Incluidas</h2>
+        <p class="text-sm text-[#6B5A5E] mt-2">Cada fiesta está diseñada para que todas las invitadas participen, se diviertan y se sientan como verdaderas princesas.</p>
+      </div>
+      <div id="services-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- ==================== VISTA: SOUVENIRS ==================== -->
+    <section id="view-souvenirs" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-10">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="inline-block px-4 py-1 rounded-full bg-[#F2B5C7] text-white text-xs font-bold uppercase tracking-[0.2em]">Detalles Especiales</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#4A3B3E] mt-3">Souvenirs Adicionales y Cortesías</h2>
+        <p class="text-sm text-[#6B5A5E] mt-2">Complementa tu paquete con recuerdos especiales para cada invitada o elige tu detalle de cortesía incluido.</p>
+      </div>
+      <div id="souvenirs-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- ==================== VISTA: GALERÍA ==================== -->
+    <section id="view-gallery" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-10">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#D1879C]">Momentos Reales</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#4A3B3E] mt-2">Galería de Experiencias Tita Spa</h2>
+        <p class="text-sm text-[#6B5A5E] mt-2">Un vistazo a nuestras estaciones, decoraciones, sonrisas y souvenirs.</p>
+      </div>
+      <div id="gallery-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- ==================== VISTA: PREGUNTAS FRECUENTES ==================== -->
+    <section id="view-faq" class="page-view hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-10">
+      <div class="text-center">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#78B2A5]">Resolvemos tus dudas</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-[#4A3B3E] mt-2">Preguntas Frecuentes</h2>
+      </div>
+      <div id="faq-list" class="space-y-4"></div>
+    </section>
+
+    <!-- ==================== VISTA: RESERVAR ==================== -->
+    <section id="view-booking" class="page-view hidden max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="bg-white rounded-[2rem] border border-[#EED3DC] shadow-xl p-6 sm:p-10">
+        <div class="mb-8">
+          <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#78B2A5]">Agenda tu Spa Party</span>
+          <h2 class="font-serif text-3xl font-bold text-[#4A3B3E] mt-1">Formulario de Reservación</h2>
+          <p class="text-sm text-[#6B5A5E] mt-1">Completa los datos de tu evento para registrar tu solicitud y apartar tu fecha con $300 MXN.</p>
+        </div>
+
+        <form id="booking-form" onsubmit="submitBookingForm(event)" class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">Nombre de mamá / papá o tutor *</label>
+            <input type="text" id="book-client-name" required placeholder="Ej. Sofía Martínez" class="w-full rounded-2xl border border-[#E89DB4] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#78B2A5]" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">WhatsApp de contacto (10 dígitos) *</label>
+            <input type="tel" id="book-phone" required placeholder="Ej. 9811234567" class="w-full rounded-2xl border border-[#E89DB4] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#78B2A5]" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">Nombre y edad de la festejada *</label>
+            <input type="text" id="book-celebrant" required placeholder="Ej. Camila - Cumple 8 años" class="w-full rounded-2xl border border-[#E89DB4] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#78B2A5]" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">Fecha del evento *</label>
+            <input type="date" id="book-date" required onchange="validateBookingDate(this.value)" class="w-full rounded-2xl border border-[#E89DB4] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#78B2A5]" />
+            <p id="book-date-warning" class="hidden text-xs text-red-600 font-semibold mt-1">⚠️ Esta fecha ya se encuentra ocupada o bloqueada. Por favor elige otra.</p>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">Hora estimada de inicio *</label>
+            <input type="time" id="book-time" value="16:00" required class="w-full rounded-2xl border border-[#E89DB4] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#78B2A5]" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">Cantidad total de niñas *</label>
+            <input type="number" id="book-girls" min="1" max="80" value="8" required oninput="recalculateBookingSummary()" class="w-full rounded-2xl border border-[#E89DB4] px-4 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#78B2A5]" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">Detalle de cortesía incluido</label>
+            <select id="book-courtesy" onchange="recalculateBookingSummary()" class="w-full rounded-2xl border border-[#E89DB4] px-4 py-3 text-sm focus:outline-none">
+              <option value="Pulsera de cortesía">Pulsera de cortesía ($0)</option>
+              <option value="Clip hair de cortesía">Clip hair de cortesía ($0)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">Colonia o dirección del evento *</label>
+            <input type="text" id="book-address" required placeholder="Ej. Col. Prado, Calle 12 #45" class="w-full rounded-2xl border border-[#E89DB4] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#78B2A5]" />
+          </div>
+
+          <div class="md:col-span-2 bg-[#FDF8F8] rounded-2xl p-4 border border-[#EED3DC]">
+            <p class="text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-3">¿Deseas agregar souvenirs extra? (Opcional)</p>
+            <div id="booking-souvenirs-options" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#6B5A5E] mb-2">Notas o temática especial (Opcional)</label>
+            <textarea id="book-notes" rows="2" placeholder="Alguna alergia, temática de colores o comentario adicional..." class="w-full rounded-2xl border border-[#E89DB4] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#78B2A5]"></textarea>
+          </div>
+
+          <!-- Resumen dinámico -->
+          <div class="md:col-span-2 bg-gradient-to-r from-[#FDF4F6] to-[#EFF7F5] rounded-2xl p-5 border border-[#E89DB4] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#6B5A5E]">Resumen de cotización</span>
+              <p id="book-summary-pkg" class="font-serif text-xl font-bold text-[#4A3B3E]">Paquete Especial (8 niñas)</p>
+              <p id="book-summary-breakdown" class="text-xs text-[#6B5A5E] mt-0.5">Base $1,550 + Extras $0 • Apartado: $300 MXN</p>
+            </div>
+            <div class="text-left sm:text-right">
+              <span class="block text-xs text-[#6B5A5E]">Total estimado</span>
+              <span id="book-summary-total" class="font-serif text-3xl font-bold text-[#78B2A5]">$1,550 MXN</span>
+            </div>
+          </div>
+
+          <div class="md:col-span-2 flex flex-wrap gap-3 pt-2">
+            <button type="submit" id="btn-submit-booking" class="flex-1 bg-[#78B2A5] hover:bg-[#649D90] text-white py-4 px-6 rounded-2xl font-semibold text-sm shadow-lg transition-all cursor-pointer">
+              Confirmar Reservación
+            </button>
+          </div>
+        </form>
+
+        <!-- Confirmación post-envío -->
+        <div id="booking-confirmation-box" class="hidden mt-8 bg-[#EFF7F5] border border-[#78B2A5] rounded-3xl p-6 text-center space-y-4">
+          <div class="w-14 h-14 rounded-full bg-white text-[#78B2A5] flex items-center justify-center text-2xl mx-auto shadow-sm">✓</div>
+          <h3 class="font-serif text-2xl font-bold text-[#4A3B3E]">¡Solicitud de Reservación Registrada!</h3>
+          <p id="booking-confirmation-text" class="text-sm text-[#5A4B4E] max-w-lg mx-auto"></p>
+          <div class="flex flex-wrap justify-center gap-3 pt-2">
+            <a id="booking-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3 rounded-full text-sm font-bold shadow-sm transition-all">
+              Enviar comprobante por WhatsApp (981 102 8046)
+            </a>
+            <button onclick="resetBookingView()" class="bg-white border border-[#E89DB4] text-[#4A3B3E] px-6 py-3 rounded-full text-sm font-semibold cursor-pointer">
+              Hacer otra cotización
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VISTA: PANEL ADMINISTRATIVO ==================== -->
+    <section id="view-admin" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Login Admin -->
+      <div id="admin-login-box" class="max-w-md mx-auto bg-white rounded-3xl border border-[#EED3DC] shadow-xl p-8 space-y-5">
+        <div class="text-center">
+          <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#D1879C]">Acceso Privado</span>
+          <h2 class="font-serif text-2xl font-bold text-[#4A3B3E] mt-1">Administración Tita Spa</h2>
+        </div>
+        <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-[#6B5A5E] mb-1">Usuario</label>
+            <input type="text" id="admin-user-input" required class="w-full rounded-xl border border-[#E89DB4] px-4 py-2.5 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-[#6B5A5E] mb-1">Contraseña</label>
+            <input type="password" id="admin-pass-input" required class="w-full rounded-xl border border-[#E89DB4] px-4 py-2.5 text-sm" />
+          </div>
+          <p id="admin-login-error" class="hidden text-xs text-red-600 font-semibold">Credenciales incorrectas.</p>
+          <button type="submit" class="w-full bg-[#78B2A5] text-white py-3 rounded-xl font-semibold text-sm cursor-pointer">Entrar al Panel</button>
+        </form>
+      </div>
+
+      <!-- Dashboard Admin -->
+      <div id="admin-dashboard-box" class="hidden space-y-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-[#EED3DC]">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#78B2A5]">● Conectado a Firebase (tita-spa)</span>
+            <h2 class="font-serif text-2xl font-bold text-[#4A3B3E]">Panel de Control Tita Spa</h2>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="switchAdminTab('reservations')" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#78B2A5] text-white cursor-pointer" data-tab="reservations">Reservaciones</button>
+            <button onclick="switchAdminTab('dates')" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#FDF4F6] text-[#4A3B3E] cursor-pointer" data-tab="dates">Bloquear Fechas</button>
+            <button onclick="navigateTo('home')" class="px-4 py-2 rounded-xl text-xs font-bold border border-[#E89DB4] text-[#4A3B3E] cursor-pointer">Volver al Sitio</button>
+          </div>
+        </div>
+
+        <!-- Tab Reservaciones -->
+        <div id="admin-tab-reservations" class="bg-white rounded-3xl border border-[#EED3DC] p-6 overflow-x-auto">
+          <h3 class="font-serif text-xl font-bold text-[#4A3B3E] mb-4">Reservaciones Registradas</h3>
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="border-b border-[#EED3DC] text-xs uppercase text-[#6B5A5E]">
+                <th class="py-3 px-2">Fecha / Hora</th>
+                <th class="py-3 px-2">Cliente / WhatsApp</th>
+                <th class="py-3 px-2">Festejada / Niñas</th>
+                <th class="py-3 px-2">Total / Apartado</th>
+                <th class="py-3 px-2">Estado</th>
+                <th class="py-3 px-2">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="admin-reservations-tbody" class="divide-y divide-[#FDF4F6]"></tbody>
+          </table>
+        </div>
+
+        <!-- Tab Fechas Bloqueadas -->
+        <div id="admin-tab-dates" class="hidden bg-white rounded-3xl border border-[#EED3DC] p-6 space-y-6">
+          <h3 class="font-serif text-xl font-bold text-[#4A3B3E]">Bloqueo Manual de Fechas</h3>
+          <div class="flex flex-wrap gap-3">
+            <input type="date" id="admin-block-date-input" class="rounded-xl border border-[#E89DB4] px-4 py-2.5 text-sm" />
+            <button onclick="adminAddBlockedDate()" class="bg-[#78B2A5] text-white px-5 py-2.5 rounded-xl text-sm font-semibold cursor-pointer">Bloquear Fecha</button>
+          </div>
+          <div id="admin-blocked-dates-list" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-[#EED3DC] mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-3 gap-8">
+      <div>
+        <span class="font-serif text-2xl font-bold text-[#78B2A5]">Tita Spa</span>
+        <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#D1879C]">Spa Party para Niñas</p>
+        <p class="font-serif italic text-sm text-[#D1879C] mt-2">“Porque toda princesa merece un día de spa.”</p>
+        <p class="text-xs text-[#6B5A5E] mt-2">¡Llevamos la diversión hasta tu evento!</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-xs uppercase tracking-wider text-[#4A3B3E] mb-3">Navegación</h4>
+        <ul class="space-y-2 text-sm text-[#6B5A5E]">
+          <li><button onclick="navigateTo('packages')" class="hover:text-[#D1879C] cursor-pointer">Paquetes y Tarifas</button></li>
+          <li><button onclick="navigateTo('services')" class="hover:text-[#D1879C] cursor-pointer">Nuestros Servicios</button></li>
+          <li><button onclick="navigateTo('souvenirs')" class="hover:text-[#D1879C] cursor-pointer">Souvenirs y Cortesías</button></li>
+          <li><button onclick="navigateTo('booking')" class="hover:text-[#D1879C] cursor-pointer">Reservar Fecha</button></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-xs uppercase tracking-wider text-[#4A3B3E] mb-3">Contacto Oficial</h4>
+        <p class="text-sm text-[#6B5A5E]">• WhatsApp: <strong>981 102 8046</strong></p>
+        <p class="text-sm text-[#6B5A5E]">• Instagram: <strong>@rubvera</strong></p>
+        <p class="text-sm text-[#6B5A5E]">• Aparta con: <strong>$300 MXN</strong> (Niña adicional $150)</p>
+      </div>
+    </div>
+    <div class="border-t border-[#FDF4F6] py-4 text-center text-xs text-[#9B8A8E]">
+      © 2026 Tita Spa — Spa Party para Niñas. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPT PRINCIPAL + FIREBASE ================= -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      doc,
+      addDoc,
+      setDoc,
+      updateDoc,
+      deleteDoc,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // =========================================================================
+    // 1. DICCIONARIO CENTRALIZADO DE IMÁGENES (EDITA AQUÍ TUS FOTOS LOCALES)
+    // =========================================================================
+    const IMAGENES_TITA_SPA = {
+      heroPrincipal: "hero.jpeg",
+      esenciaIzquierda: "titaspa.jpeg",
+      esenciaDerecha: "imagen2.jpeg",
+
+      paqueteEspecial: "bolsas.jpeg",
+      paquete10a15: "mesa.jpeg",
+      paquete15a20: "niñas.jpeg",
+      paquete20a25: "ojo.jpeg",
+
+      srvMascarillas: "mascarilla.jpeg",
+      srvManicure: "mani.jpeg",
+      srvPeinados: "coletas.jpeg",
+      srvMaquillaje: "maquillaje.jpeg",
+      srvGemitas: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80",
+      srvDiversion: "fiesta.jpeg",
+
+      souvLentes: "lentes.jpeg",
+      souvEstucheras: "bolsitas.jpeg",
+      souvEspejos: "mesadecoracion.jpeg",
+      souvColetas: "coletas.jpeg",
+      souvClipCortesia: "clip.jpeg",
+      souvPulseraCortesia: "pulseras.jpeg"
+    };
+
+    // =========================================================================
+    // 2. CONFIGURACIÓN OFICIAL FIREBASE (tita-spa)
+    // =========================================================================
+    const firebaseConfig = {
+      apiKey: "AIzaSyCSa2Ipz0Nj-HU7yIWuUkjfYTxlvlcnOvU",
+      authDomain: "tita-spa.firebaseapp.com",
+      projectId: "tita-spa",
+      storageBucket: "tita-spa.firebasestorage.app",
+      messagingSenderId: "186579299110",
+      appId: "1:186579299110:web:aea71ed74aa0065ebfafe7",
+      measurementId: "G-BZ3HH5839M"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // =========================================================================
+    // 3. CATÁLOGOS OFICIALES TITA SPA
+    // =========================================================================
+    const WHATSAPP_ADMIN = "529811028046";
+
+    const PACKAGES = [
+      {
+        id: "pkg-especial",
+        name: "Paquete Especial",
+        badge: "♥ Más solicitado ♥",
+        girlsLabel: "Hasta 8 niñas",
+        minGirls: 1,
+        maxGirls: 8,
+        price: 1550,
+        deposit: 300,
+        duration: "2 horas",
+        extraGirlPrice: 150,
+        image: IMAGENES_TITA_SPA.paqueteEspecial,
+        includes: [
+          "Mascarillas facial infantil",
+          "Mini manicure",
+          "Peinado sencillo",
+          "Maquillaje infantil y aplicación de gemitas",
+          "¡Muchísima diversión! (Niña adicional $150)"
+        ]
+      },
+      {
+        id: "pkg-10-15",
+        name: "Paquete Grupal 10 a 15",
+        badge: "♥ Paquete Grupal ♥",
+        girlsLabel: "10 a 15 niñas",
+        minGirls: 10,
+        maxGirls: 15,
+        price: 2100,
+        deposit: 300,
+        duration: "2 horas",
+        extraGirlPrice: 150,
+        image: IMAGENES_TITA_SPA.paquete10a15,
+        includes: [
+          "Mascarillas faciales",
+          "Mini mani & pedi",
+          "Peinados con glitter",
+          "Maquillaje y gemas",
+          "¡Muchísima diversión! + Cortesía"
+        ]
+      },
+      {
+        id: "pkg-15-20",
+        name: "Paquete Grupal 15 a 20",
+        badge: "♥ Paquete Grupal ♥",
+        girlsLabel: "15 a 20 niñas",
+        minGirls: 16,
+        maxGirls: 20,
+        price: 2600,
+        deposit: 300,
+        duration: "2 horas",
+        extraGirlPrice: 150,
+        image: IMAGENES_TITA_SPA.paquete15a20,
+        includes: [
+          "Mascarillas faciales",
+          "Mini mani & pedi",
+          "Peinados con glitter",
+          "Maquillaje y gemas",
+          "¡Muchísima diversión! + Cortesía"
+        ]
+      },
+      {
+        id: "pkg-20-25",
+        name: "Paquete Grupal 20 a 25",
+        badge: "♥ Mega Spa Party ♥",
+        girlsLabel: "20 a 25 niñas",
+        minGirls: 21,
+        maxGirls: 25,
+        price: 2950,
+        deposit: 300,
+        duration: "2 horas",
+        extraGirlPrice: 150,
+        image: IMAGENES_TITA_SPA.paquete20a25,
+        includes: [
+          "Mascarillas, mini mani & pedi",
+          "Peinados con glitter, maquillaje y gemas",
+          "¡Muchísima diversión! + Cortesía",
+          "Más de 25 niñas: +$150 MXN por niña extra"
+        ]
+      }
+    ];
+
+    const SERVICES = [
+      { title: "Mascarillas facial infantil", desc: "Mascarillas suaves e hidratantes para consentir su piel.", image: IMAGENES_TITA_SPA.srvMascarillas },
+      { title: "Mini mani & pedi", desc: "Tinas relajantes, hidratación y esmaltes infantiles no tóxicos.", image: IMAGENES_TITA_SPA.srvManicure },
+      { title: "Peinados con glitter", desc: "Peinados divertidos con brillo cosmético y accesorios.", image: IMAGENES_TITA_SPA.srvPeinados },
+      { title: "Maquillaje infantil", desc: "Sombras suaves, gloss y rubor especial para piel delicada.", image: IMAGENES_TITA_SPA.srvMaquillaje },
+      { title: "Aplicación de gemas", desc: "Piedritas y mariposas brillantes para un toque mágico en el rostro.", image: IMAGENES_TITA_SPA.srvGemitas },
+      { title: "¡Muchísima diversión!", desc: "Música, pasarela final y dinámicas para crear recuerdos inolvidables.", image: IMAGENES_TITA_SPA.srvDiversion }
+    ];
+
+    const SOUVENIRS = [
+      { id: "souv-lentes", name: "Lentes decorados", price: 35, desc: "Lentes rosas personalizados con moños y dijes.", image: IMAGENES_TITA_SPA.souvLentes },
+      { id: "souv-estucheras", name: "Estucheras personalizadas", price: 40, desc: "Estuchera decorada ideal para guardar sus accesorios.", image: IMAGENES_TITA_SPA.souvEstucheras },
+      { id: "souv-espejos", name: "Mini espejos circulares", price: 20, desc: "Espejito de bolsillo con diseño tierno.", image: IMAGENES_TITA_SPA.souvEspejos },
+      { id: "souv-coletas", name: "Coletas de colores", price: 30, desc: "Extensiones y coletas de colores con estrella.", image: IMAGENES_TITA_SPA.souvColetas },
+      { id: "souv-clip", name: "Clip hair de cortesía", price: 0, desc: "Incluido sin costo al elegirlo como detalle de tu paquete.", image: IMAGENES_TITA_SPA.souvClipCortesia },
+      { id: "souv-pulsera", name: "Pulsera de cortesía", price: 0, desc: "Pulsera artesanal incluida sin costo en todos los paquetes.", image: IMAGENES_TITA_SPA.souvPulseraCortesia }
+    ];
+
+    const FAQS = [
+      { q: "¿Con cuánto tiempo de anticipación debo apartar mi fecha?", a: "Recomendamos apartar con al menos 1 a 2 semanas de anticipación con un anticipo de $300 MXN para asegurar disponibilidad." },
+      { q: "¿Qué espacio necesitan en mi casa o salón?", a: "Solo necesitamos un área techada o interior limpia con acceso a toma de corriente eléctrica. Nosotros llevamos mesas, sillas, espejos y decoración." },
+      { q: "¿Cuánto dura el servicio de Spa Party?", a: "La duración estándar de todos nuestros paquetes es de 2 horas continuas de atención y diversión." },
+      { q: "¿Qué pasa si asisten más niñas de las planeadas?", a: "Si tu evento supera las 8 niñas en el Paquete Especial o las 25 niñas en el Paquete Grupal máximo, cada niña adicional tiene un costo de $150 MXN." }
+    ];
+
+    const state = {
+      reservations: [],
+      blockedDates: [],
+      isAdminAuthenticated: false
+    };
+
+    function calculateQuoteForGirls(rawGirls) {
+      const girls = Math.max(1, parseInt(rawGirls, 10) || 1);
+      if (girls <= 8) return { pkg: PACKAGES[0], girls, basePrice: 1550, extraGirls: 0, extraTotal: 0, total: 1550 };
+      if (girls === 9) return { pkg: PACKAGES[0], girls, basePrice: 1550, extraGirls: 1, extraTotal: 150, total: 1700 };
+      if (girls <= 15) return { pkg: PACKAGES[1], girls, basePrice: 2100, extraGirls: 0, extraTotal: 0, total: 2100 };
+      if (girls <= 20) return { pkg: PACKAGES[2], girls, basePrice: 2600, extraGirls: 0, extraTotal: 0, total: 2600 };
+      if (girls <= 25) return { pkg: PACKAGES[3], girls, basePrice: 2950, extraGirls: 0, extraTotal: 0, total: 2950 };
+      const extraGirls = girls - 25;
+      const extraTotal = extraGirls * 150;
+      return { pkg: PACKAGES[3], girls, basePrice: 2950, extraGirls, extraTotal, total: 2950 + extraTotal };
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function applyInitialImages() {
+      document.getElementById("img-hero-main").src = IMAGENES_TITA_SPA.heroPrincipal;
+      document.getElementById("img-essence-left").src = IMAGENES_TITA_SPA.esenciaIzquierda;
+      document.getElementById("img-essence-right").src = IMAGENES_TITA_SPA.esenciaDerecha;
+    }
+
+    function createPackageCard(pkg) {
+      return `
+        <div class="bg-white rounded-3xl border border-[#EED3DC] shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col">
+          <div class="relative aspect-[4/3] bg-[#FDF4F6]">
+            <img src="${escapeHtml(pkg.image)}" alt="${escapeHtml(pkg.name)}" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 bg-[#F2B5C7] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">${escapeHtml(pkg.badge)}</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#78B2A5]">${escapeHtml(pkg.girlsLabel)} • ${escapeHtml(pkg.duration)}</span>
+              <h3 class="font-serif text-xl font-bold text-[#4A3B3E] mt-1">${escapeHtml(pkg.name)}</h3>
+              <p class="font-serif text-2xl font-bold text-[#D1879C] mt-2">$${pkg.price.toLocaleString("es-MX")} <span class="text-xs font-sans font-normal text-[#6B5A5E]">MXN</span></p>
+              <ul class="mt-4 space-y-2 text-xs text-[#6B5A5E]">
+                ${pkg.includes.map(item => `<li class="flex items-start gap-2"><span class="text-[#F2B5C7] font-bold">♥</span><span>${escapeHtml(item)}</span></li>`).join("")}
+              </ul>
+            </div>
+            <button onclick="selectPackageForBooking(${pkg.maxGirls})" class="w-full bg-[#FDF4F6] hover:bg-[#78B2A5] text-[#4A3B3E] hover:text-white border border-[#E89DB4] py-3 rounded-2xl text-xs font-bold transition-all cursor-pointer">
+              Elegir este paquete
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAllCatalogs() {
+      const pkgHtml = PACKAGES.map(createPackageCard).join("");
+      document.getElementById("home-packages-grid").innerHTML = pkgHtml;
+      document.getElementById("packages-full-grid").innerHTML = pkgHtml;
+
+      document.getElementById("services-grid").innerHTML = SERVICES.map(srv => `
+        <div class="bg-white rounded-3xl border border-[#EED3DC] overflow-hidden shadow-sm">
+          <div class="aspect-[4/3] bg-[#FDF4F6]">
+            <img src="${escapeHtml(srv.image)}" alt="${escapeHtml(srv.title)}" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-xl font-bold text-[#4A3B3E]">${escapeHtml(srv.title)}</h3>
+            <p class="text-sm text-[#6B5A5E] mt-2 leading-relaxed">${escapeHtml(srv.desc)}</p>
+          </div>
+        </div>
+      `).join("");
+
+      document.getElementById("souvenirs-grid").innerHTML = SOUVENIRS.map(s => `
+        <div class="bg-white rounded-3xl border border-[#EED3DC] overflow-hidden shadow-sm flex flex-col">
+          <div class="relative aspect-square bg-[#FDF4F6]">
+            <img src="${escapeHtml(s.image)}" alt="${escapeHtml(s.name)}" class="w-full h-full object-cover">
+            <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold ${s.price === 0 ? "bg-[#78B2A5] text-white" : "bg-white text-[#4A3B3E]"}">
+              ${s.price === 0 ? "Gratis (Cortesía)" : `$${s.price} MXN c/u`}
+            </span>
+          </div>
+          <div class="p-5 flex-1">
+            <h3 class="font-serif text-lg font-bold text-[#4A3B3E]">${escapeHtml(s.name)}</h3>
+            <p class="text-xs text-[#6B5A5E] mt-1">${escapeHtml(s.desc)}</p>
+          </div>
+        </div>
+      `).join("");
+
+      const galleryItems = [
+        { title: "Experiencia Frente al Tocador", img: IMAGENES_TITA_SPA.heroPrincipal },
+        { title: "Estación Mini Manicure", img: IMAGENES_TITA_SPA.esenciaIzquierda },
+        { title: "Mascarillas Faciales", img: IMAGENES_TITA_SPA.esenciaDerecha },
+        { title: "Celebración Grupal", img: IMAGENES_TITA_SPA.paquete15a20 },
+        { title: "Lentes Decorados", img: IMAGENES_TITA_SPA.souvLentes },
+        { title: "Estucheras Personalizadas", img: IMAGENES_TITA_SPA.souvEstucheras }
+      ];
+      document.getElementById("gallery-grid").innerHTML = galleryItems.map(g => `
+        <div class="group relative rounded-3xl overflow-hidden border-2 border-white shadow-md aspect-[4/5] bg-[#FDF4F6]">
+          <img src="${escapeHtml(g.img)}" alt="${escapeHtml(g.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-x-3 bottom-3 glass-card rounded-2xl px-4 py-2.5">
+            <p class="font-serif font-bold text-sm text-[#4A3B3E]">${escapeHtml(g.title)}</p>
+          </div>
+        </div>
+      `).join("");
+
+      document.getElementById("faq-list").innerHTML = FAQS.map(f => `
+        <div class="bg-white rounded-2xl border border-[#EED3DC] p-6 shadow-sm">
+          <h3 class="font-serif text-lg font-bold text-[#4A3B3E]">${escapeHtml(f.q)}</h3>
+          <p class="text-sm text-[#6B5A5E] mt-2 leading-relaxed">${escapeHtml(f.a)}</p>
+        </div>
+      `).join("");
+
+      const extraSouvenirs = SOUVENIRS.filter(s => s.price > 0);
+      document.getElementById("booking-souvenirs-options").innerHTML = extraSouvenirs.map(s => `
+        <label class="flex items-center justify-between gap-2 bg-white p-3 rounded-xl border border-[#E89DB4] text-xs cursor-pointer">
+          <div>
+            <span class="font-bold text-[#4A3B3E] block">${escapeHtml(s.name)}</span>
+            <span class="text-[#D1879C] font-semibold">$${s.price} MXN c/u</span>
+          </div>
+          <input type="checkbox" class="booking-souv-check accent-[#78B2A5] w-4 h-4" data-name="${escapeHtml(s.name)}" data-price="${s.price}" onchange="recalculateBookingSummary()">
+        </label>
+      `).join("");
+    }
+
+    window.navigateTo = function(viewName) {
+      document.querySelectorAll(".page-view").forEach(el => el.classList.add("hidden"));
+      const target = document.getElementById(`view-${viewName}`);
+      if (target) target.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    window.toggleMobileMenu = function() {
+      document.getElementById("mobile-menu").classList.toggle("hidden");
+    };
+
+    window.handleQuickSearch = function(rawQuery) {
+      const q = (rawQuery || "").trim();
+      if (q === "/Admintitaspa2427") {
+        navigateTo("admin");
+        return;
+      }
+      if (!q) return;
+      navigateTo("packages");
+    };
+
+    window.updateQuickCalculator = function() {
+      const girls = document.getElementById("calc-girls-input").value;
+      const quote = calculateQuoteForGirls(girls);
+      document.getElementById("calc-pkg-name").textContent = quote.pkg.name;
+      document.getElementById("calc-base-price").textContent = `$${quote.basePrice.toLocaleString("es-MX")} MXN`;
+      document.getElementById("calc-extra-price").textContent = `$${quote.extraTotal.toLocaleString("es-MX")} MXN (${quote.extraGirls})`;
+      document.getElementById("calc-total-price").textContent = `$${quote.total.toLocaleString("es-MX")} MXN`;
+    };
+
+    window.applyCalculatorToBooking = function() {
+      const girls = document.getElementById("calc-girls-input").value;
+      const courtesy = document.getElementById("calc-courtesy-select").value;
+      document.getElementById("book-girls").value = girls;
+      document.getElementById("book-courtesy").value = courtesy;
+      recalculateBookingSummary();
+      navigateTo("booking");
+    };
+
+    window.selectPackageForBooking = function(girlsCount) {
+      document.getElementById("book-girls").value = girlsCount;
+      recalculateBookingSummary();
+      navigateTo("booking");
+    };
+
+    window.recalculateBookingSummary = function() {
+      const girls = parseInt(document.getElementById("book-girls").value, 10) || 1;
+      const quote = calculateQuoteForGirls(girls);
+      let souvenirsTotal = 0;
+      document.querySelectorAll(".booking-souv-check:checked").forEach(cb => {
+        souvenirsTotal += (parseInt(cb.dataset.price, 10) || 0) * quote.girls;
+      });
+      const grandTotal = quote.total + souvenirsTotal;
+      document.getElementById("book-summary-pkg").textContent = `${quote.pkg.name} (${quote.girls} niñas)`;
+      document.getElementById("book-summary-breakdown").textContent =
+        `Base $${quote.basePrice.toLocaleString("es-MX")} + Niñas extra $${quote.extraTotal.toLocaleString("es-MX")} + Souvenirs $${souvenirsTotal.toLocaleString("es-MX")} • Apartado: $300 MXN`;
+      document.getElementById("book-summary-total").textContent = `$${grandTotal.toLocaleString("es-MX")} MXN`;
+      return { ...quote, souvenirsTotal, grandTotal };
+    };
+
+    window.validateBookingDate = function(dateStr) {
+      const warning = document.getElementById("book-date-warning");
+      const isBlocked = state.blockedDates.includes(dateStr) ||
+        state.reservations.some(r => r.date === dateStr && r.status !== "Cancelada");
+      if (isBlocked) {
+        warning.classList.remove("hidden");
+        return false;
+      }
+      warning.classList.add("hidden");
+      return true;
+    };
+
+    window.submitBookingForm = async function(e) {
+      e.preventDefault();
+      const dateVal = document.getElementById("book-date").value;
+      if (!validateBookingDate(dateVal)) {
+        alert("La fecha seleccionada ya está ocupada. Por favor elige otra fecha.");
+        return;
+      }
+      const phone = document.getElementById("book-phone").value.replace(/\D/g, "");
+      if (phone.length < 10) {
+        alert("Por favor ingresa un número de WhatsApp válido a 10 dígitos.");
+        return;
+      }
+
+      const summary = recalculateBookingSummary();
+      const selectedSouvenirs = Array.from(document.querySelectorAll(".booking-souv-check:checked")).map(cb => cb.dataset.name);
+
+      const payload = {
+        clientName: document.getElementById("book-client-name").value.trim(),
+        phone,
+        celebrant: document.getElementById("book-celebrant").value.trim(),
+        date: dateVal,
+        time: document.getElementById("book-time").value,
+        girls: summary.girls,
+        packageName: summary.pkg.name,
+        courtesy: document.getElementById("book-courtesy").value,
+        souvenirs: selectedSouvenirs,
+        address: document.getElementById("book-address").value.trim(),
+        notes: document.getElementById("book-notes").value.trim(),
+        total: summary.grandTotal,
+        deposit: 300,
+        status: "Pendiente de apartado",
+        createdAt: new Date().toISOString()
+      };
+
+      const btn = document.getElementById("btn-submit-booking");
+      btn.disabled = true;
+      btn.textContent = "Guardando reservación...";
+
+      try {
+        await addDoc(collection(db, "reservations"), payload);
+        document.getElementById("booking-form").classList.add("hidden");
+        document.getElementById("booking-confirmation-box").classList.remove("hidden");
+        document.getElementById("booking-confirmation-text").textContent =
+          `¡Gracias ${payload.clientName}! Hemos registrado la reserva de ${payload.celebrant} para el día ${payload.date} a las ${payload.time} hrs (${payload.packageName} - Total $${payload.total.toLocaleString("es-MX")} MXN).`;
+
+        const waMsg = encodeURIComponent(
+          `¡Hola Tita Spa! 💖 Acabo de registrar mi reservación:\n` +
+          `• Mamá/Papá: ${payload.clientName}\n` +
+          `• Festejada: ${payload.celebrant}\n` +
+          `• Fecha y hora: ${payload.date} a las ${payload.time}\n` +
+          `• Paquete: ${payload.packageName} (${payload.girls} niñas)\n` +
+          `• Cortesía: ${payload.courtesy}\n` +
+          `• Total estimado: $${payload.total.toLocaleString("es-MX")} MXN (Apartado $300 MXN)`
+        );
+        document.getElementById("booking-whatsapp-link").href = `https://wa.me/${WHATSAPP_ADMIN}?text=${waMsg}`;
+      } catch (err) {
+        alert("Ocurrió un error al guardar en Firebase: " + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Confirmar Reservación";
+      }
+    };
+
+    window.resetBookingView = function() {
+      document.getElementById("booking-form").reset();
+      document.getElementById("booking-form").classList.remove("hidden");
+      document.getElementById("booking-confirmation-box").classList.add("hidden");
+      recalculateBookingSummary();
+    };
+
+    window.handleAdminLogin = function(e) {
+      e.preventDefault();
+      const user = document.getElementById("admin-user-input").value.trim();
+      const pass = document.getElementById("admin-pass-input").value.trim();
+      if (user === "Rubí Vera" && pass === "Rubí2427") {
+        state.isAdminAuthenticated = true;
+        document.getElementById("admin-login-box").classList.add("hidden");
+        document.getElementById("admin-dashboard-box").classList.remove("hidden");
+        renderAdminDashboard();
+      } else {
+        document.getElementById("admin-login-error").classList.remove("hidden");
+      }
+    };
+
+    window.switchAdminTab = function(tabName) {
+      document.getElementById("admin-tab-reservations").classList.toggle("hidden", tabName !== "reservations");
+      document.getElementById("admin-tab-dates").classList.toggle("hidden", tabName !== "dates");
+      document.querySelectorAll(".admin-tab-btn").forEach(btn => {
+        const active = btn.dataset.tab === tabName;
+        btn.className = `admin-tab-btn px-4 py-2 rounded-xl text-xs font-bold cursor-pointer ${active ? "bg-[#78B2A5] text-white" : "bg-[#FDF4F6] text-[#4A3B3E]"}`;
+      });
+    };
+
+    window.adminUpdateStatus = async function(docId, newStatus) {
+      await updateDoc(doc(db, "reservations", docId), { status: newStatus });
+    };
+
+    window.adminDeleteReservation = async function(docId) {
+      if (!confirm("¿Eliminar esta reservación permanentemente?")) return;
+      await deleteDoc(doc(db, "reservations", docId));
+    };
+
+    window.adminAddBlockedDate = async function() {
+      const dateStr = document.getElementById("admin-block-date-input").value;
+      if (!dateStr) return;
+      const updated = Array.from(new Set([...state.blockedDates, dateStr])).sort();
+      await setDoc(doc(db, "settings", "general"), { blockedDates: updated }, { merge: true });
+      document.getElementById("admin-block-date-input").value = "";
+    };
+
+    window.adminRemoveBlockedDate = async function(dateStr) {
+      const updated = state.blockedDates.filter(d => d !== dateStr);
+      await setDoc(doc(db, "settings", "general"), { blockedDates: updated }, { merge: true });
+    };
+
+    function renderAdminDashboard() {
+      if (!state.isAdminAuthenticated) return;
+      const tbody = document.getElementById("admin-reservations-tbody");
+      if (!state.reservations.length) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-xs text-[#6B5A5E]">Aún no hay reservaciones registradas.</td></tr>`;
+      } else {
+        tbody.innerHTML = state.reservations.map(r => `
+          <tr>
+            <td class="py-3 px-2 font-semibold">${escapeHtml(r.date)}<br><span class="text-xs text-[#6B5A5E]">${escapeHtml(r.time)} hrs</span></td>
+            <td class="py-3 px-2">${escapeHtml(r.clientName)}<br><span class="text-xs text-[#78B2A5]">${escapeHtml(r.phone)}</span></td>
+            <td class="py-3 px-2">${escapeHtml(r.celebrant)}<br><span class="text-xs text-[#6B5A5E]">${escapeHtml(r.packageName)} (${r.girls} niñas)</span></td>
+            <td class="py-3 px-2 font-bold text-[#D1879C]">$${Number(r.total || 0).toLocaleString("es-MX")} MXN</td>
+            <td class="py-3 px-2">
+              <select onchange="adminUpdateStatus('${r.id}', this.value)" class="rounded-lg border border-[#E89DB4] px-2 py-1 text-xs">
+                <option value="Pendiente de apartado" ${r.status === "Pendiente de apartado" ? "selected" : ""}>Pendiente de apartado</option>
+                <option value="Apartada ($300)" ${r.status === "Apartada ($300)" ? "selected" : ""}>Apartada ($300)</option>
+                <option value="Liquidada" ${r.status === "Liquidada" ? "selected" : ""}>Liquidada</option>
+                <option value="Cancelada" ${r.status === "Cancelada" ? "selected" : ""}>Cancelada</option>
+              </select>
+            </td>
+            <td class="py-3 px-2">
+              <button onclick="adminDeleteReservation('${r.id}')" class="text-xs text-red-600 hover:underline cursor-pointer">Eliminar</button>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      const blockedContainer = document.getElementById("admin-blocked-dates-list");
+      blockedContainer.innerHTML = state.blockedDates.length
+        ? state.blockedDates.map(d => `
+            <span class="inline-flex items-center gap-2 bg-[#FDF4F6] border border-[#E89DB4] px-3 py-1.5 rounded-full text-xs font-semibold text-[#4A3B3E]">
+              📅 ${escapeHtml(d)}
+              <button onclick="adminRemoveBlockedDate('${d}')" class="text-red-500 font-bold cursor-pointer">✕</button>
+            </span>
+          `).join("")
+        : `<p class="text-xs text-[#6B5A5E]">No hay fechas bloqueadas manualmente.</p>`;
+    }
+
+    onSnapshot(collection(db, "reservations"), (snap) => {
+      state.reservations = snap.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+      renderAdminDashboard();
+    });
+
+    onSnapshot(doc(db, "settings", "general"), (snap) => {
+      if (snap.exists() && Array.isArray(snap.data().blockedDates)) {
+        state.blockedDates = snap.data().blockedDates;
+        renderAdminDashboard();
+      }
+    });
+
+    applyInitialImages();
+    renderAllCatalogs();
+    updateQuickCalculator();
+    recalculateBookingSummary();
+  </script>
+</body>
+</html>
